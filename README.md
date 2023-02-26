@@ -113,9 +113,9 @@ print(Terminal.Write(text="This is an example text", interval=0.5, hide_cursor=T
 ### Color
 Colors text with the specified color.
 ```py
-from Terminalia import Terminal
+from Terminalia import Terminal, Color
 
-print(Terminal.Color(text="This is an example text", color=Colors.BLUE, reset=True))
+print(Terminal.Color(text="This is an example text", color=Color.BLUE, reset=True))
 ```
 - `Args:`
   - **text (str)**: The text to color.
