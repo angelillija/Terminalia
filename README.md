@@ -73,7 +73,7 @@ Terminal.Show_Cursor()
 ```py
 from Terminalia import Terminal
 
-Terminal.Show_Cursor()
+print(Terminal.Translate("This is an example text"))
 ```
 - `Args:` 
   - **text (str)**: The text to translate.
@@ -86,7 +86,7 @@ Terminal.Show_Cursor()
 ```py
 from Terminalia import Terminal
 
-Terminal.Write(text="This is an example text", interval=0.5, hide_cursor=True)
+print(Terminal.Write(text="This is an example text", interval=0.5, hide_cursor=True))
 ```
 - `Args:`
   - **text (str)**: The text to write out.
@@ -100,7 +100,7 @@ Colors text with the specified color.
 ```py
 from Terminalia import Terminal
 
-Terminal.Color(text="This is an example text", color=Colors.BLUE, reset=True)
+print(Terminal.Color(text="This is an example text", color=Colors.BLUE, reset=True))
 ```
 - `Args:`
   - **text (str)**: The text to color.
