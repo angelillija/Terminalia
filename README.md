@@ -1,7 +1,22 @@
-# Terminalia
-A Python Library for Command Line Interface (CLI) Development
-
+<h1 align="center">Terminalia</h1>
+<h3 align="center">A Python Library for Command Line Interface (CLI) Development</h3>
 I will be updating this very soon with many new features. Just releasing this now so I can use it for other projects of mine!
+<br>
+<br>
+<p align="center">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.0.2-blue.svg?cacheSeconds=2592000" />
+  <a href="https://github.com/aithedev/Terminalia/blob/main/README.md" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/Documentation-True-blue.svg" />
+  </a>
+  <a href="https://github.com/aithedev/Terminalia/" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained-True-blue.svg" />
+  </a>
+  </a>
+  <a href="https://pepy.tech/project/terminalia" target="_blank">
+    <img alt="Downloads" src="https://static.pepy.tech/personalized-badge/terminalia?period=total&units=international_system&left_color=grey&right_color=blue&left_text=Downloads" />
+  </a>
+</p>
+
 ## Features
 - [Sets the title of the terminal window.](https://github.com/aithedev/Terminalia#Title)
 - [Clears the terminal screen.](https://github.com/aithedev/Terminalia#Clear)
@@ -73,7 +88,7 @@ Terminal.Show_Cursor()
 ```py
 from Terminalia import Terminal
 
-print(Terminal.Translate("This is an example text"))
+print(Terminal.Translate("Ceci est un exemple de texte"))
 ```
 - `Args:` 
   - **text (str)**: The text to translate.
