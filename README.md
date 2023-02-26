@@ -1,6 +1,7 @@
 # Terminalia
 A Python Library for Command Line Interface (CLI) Development
 
+I will be updating this very soon with many new features. Just releasing this now so I can use it for other projects of mine!
 ## Features
 - [Sets the title of the terminal window.](https://github.com/aithedev/Terminalia#Title)
 - [Clears the terminal screen.](https://github.com/aithedev/Terminalia#Clear)
@@ -11,7 +12,12 @@ A Python Library for Command Line Interface (CLI) Development
 - [Colors text with the specified color.](https://github.com/aithedev/Terminalia#Color)
 - [Centers the specified text in a line of width 80 characters.](https://github.com/aithedev/Terminalia#Center)
 
+## Install
+```
+pip3 install Terminalia
+```
 
+# Usage
 ### Title
 **Sets the title of the terminal window.**
 
@@ -103,3 +109,7 @@ Terminal.Color(text="This is an example text", color=Colors.BLUE, reset=True)
 - `Returns:`
   - **str**: The colored text.
   
+# Contact
+- **Website**: https://aithe.dev/
+- **Discord**: ai#4444
+- **Telegram**: t.me/aithedev
