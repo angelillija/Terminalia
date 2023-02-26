@@ -25,7 +25,7 @@ I will be updating this very soon with many new features. Just releasing this no
 - [Translate text from one language to another. Auto detects the specified text's language as well as the users language.](https://github.com/aithedev/Terminalia#Translate)
 - [Prints text by writing it out letter by letter with an interval.](https://github.com/aithedev/Terminalia#Write)
 - [Colors text with the specified color.](https://github.com/aithedev/Terminalia#Color)
-- [Centers the specified text in a line of width 80 characters.](https://github.com/aithedev/Terminalia#Center)
+- [Centers the specified text.](https://github.com/aithedev/Terminalia#Center)
 
 ## Install
 ```
@@ -123,6 +123,20 @@ print(Terminal.Color(text="This is an example text", color=Colors.BLUE, reset=Tr
   - **reset (bool, optional)**: Whether to reset the color after the text is printed. Default is True.
 - `Returns:`
   - **str**: The colored text.
+  
+  
+### Center
+Centers the specified text.
+```py
+from Terminalia import Terminal
+
+print(Terminal.Center("This is an example text"))
+```
+- `Args:`
+  - **text (str)**: The text to center.
+- `Returns:`
+  - **str**: The centered text.
+  
   
 # Contact
 - **Website**: https://aithe.dev/
