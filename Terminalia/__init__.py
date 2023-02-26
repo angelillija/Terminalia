@@ -1,1 +1,1 @@
-from .Terminalia import Terminalia
+from .Terminalia import Terminal, Color
