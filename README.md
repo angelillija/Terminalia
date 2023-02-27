@@ -137,7 +137,7 @@ print(Terminal.Center("This is an example text"))
   - **str**: The centered text.
   
   
-# Contact
+## `🧑‍💻` Contact
 - **Website**: https://aithe.dev/
-- **Discord**: ai#4444
 - **Telegram**: t.me/aithedev
+- **Discord**: ai#4444
