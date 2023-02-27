@@ -1,6 +1,5 @@
 <h1 align="center">Terminalia</h1>
 <h3 align="center">A Python Library for Command Line Interface (CLI) Development</h3>
-I will be updating this very soon with many new features. Just releasing this now so I can use it for other projects of mine!
 <br>
 <br>
 <p align="center">
