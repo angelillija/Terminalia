@@ -16,15 +16,14 @@
   </a>
 </p>
 
-## Features
-- [Sets the title of the terminal window.](https://github.com/aithedev/Terminalia#Title)
-- [Clears the terminal screen.](https://github.com/aithedev/Terminalia#Clear)
-- [Hides the cursor on the terminal.](https://github.com/aithedev/Terminalia#Hide_Cursor)
-- [Displays the cursor on the terminal.](https://github.com/aithedev/Terminalia#Show_Cursor)
-- [Translate text from one language to another. Auto detects the specified text's language as well as the users language.](https://github.com/aithedev/Terminalia#Translate)
-- [Prints text by writing it out letter by letter with an interval.](https://github.com/aithedev/Terminalia#Write)
-- [Colors text with the specified color.](https://github.com/aithedev/Terminalia#Color)
-- [Centers the specified text.](https://github.com/aithedev/Terminalia#Center)
+Terminalia provides a collection of useful functions for working with terminals, including:
+
+- `Terminal.set_title(title: str)`: sets the title of the console window to the given title.
+- `Terminal.clear()`: clears the terminal screen.
+- `Terminal.hide_cursor()`: hides the cursor in the console.
+- `Terminal.show_cursor()`: shows the cursor in the console.
+- `Terminal.translate(text: str)`: translates the given text from English to another language.
+- `Terminal.write(text: str, interval: float = 0.01, hide_cursor: bool = True)`: simulates typing out the given text with a specified interval between characters.
 
 ## Install
 ```
@@ -32,6 +31,11 @@ pip3 install Terminalia
 ```
 
 # Usage
+To use this package, simply import it as follows:
+```py
+from Terminalia import Terminal, Color # importing color is optional
+```
+
 ### Title
 **Sets the title of the terminal window.**
 
@@ -42,8 +46,6 @@ Terminal.Title("This is a test title")
 ```
 - `Args:`
   - **title (str)**: The title to set for the terminal window.
-- `Returns:`
-  - None
         
 ### Clear 
 **Clears the terminal screen.**
@@ -53,10 +55,6 @@ from Terminalia import Terminal
 
 Terminal.Clear()
 ```
-- `Args:` 
-  - None
-- `Returns:` 
-  - None
 
 ### Hide_Cursor
 **Hides the cursor on the terminal.**
@@ -65,10 +63,6 @@ from Terminalia import Terminal
 
 Terminal.Hide_Cursor()
 ```
-- `Args:` 
-  - None
-- `Returns:` 
-  - None
 
 ### Show_Cursor
 **Displays the cursor on the terminal.**
@@ -77,10 +71,6 @@ from Terminalia import Terminal
 
 Terminal.Show_Cursor()
 ```
-- `Args:` 
-  - None
-- `Returns:` 
-  - None
 
 ### Translate
 **Translate text from one language to another. Auto detects the specified text's language as well as the users language.**
@@ -107,35 +97,44 @@ print(Terminal.Write(text="This is an example text", interval=0.5, hide_cursor=T
   - **interval (float, optional)**: The delay between characters, in seconds. Default is 0.01 seconds.
   - **hide_cursor (bool, optional)**: Whether to hide the cursor while writing the text. Default is True.
 - `Returns:`
-  - **str**: The translated text.
+  - **str**: The final typed out string.
   
 ### Color
 Colors text with the specified color.
 ```py
-from Terminalia import Terminal, Color
+from Terminalia import Color
 
-print(Terminal.Color(text="This is an example text", color=Color.BLUE, reset=True))
+print(f"{Color.BLUE}Hello, world!{Color.RESET}")
 ```
-- `Args:`
-  - **text (str)**: The text to color.
-  - **color (Color)**: The color to use. 
-  - **reset (bool, optional)**: Whether to reset the color after the text is printed. Default is True.
-- `Returns:`
-  - **str**: The colored text.
-  
-  
-### Center
-Centers the specified text.
-```py
-from Terminalia import Terminal
 
-print(Terminal.Center("This is an example text"))
-```
-- `Args:`
-  - **text (str)**: The text to center.
-- `Returns:`
-  - **str**: The centered text.
-  
+- `Colors`
+  - **BLACK**
+  - **RED**
+  - **GREEN**
+  - **YELLOW**
+  - **BLUE**
+  - **PURPLE**
+  - **CYAN**
+  - **WHITE**
+  - **GREY**
+  - **BOLD**
+  - **UNDERLINE**
+  - **BG_BLACK**
+  - **BG_RED**
+  - **BG_GREEN**
+  - **BG_YELLOW**
+  - **BG_BLUE**
+  - **BG_MAGENTA**
+  - **BG_CYAN**
+  - **BG_WHITE**
+  - **BRIGHT_RED**
+  - **BRIGHT_GREEN**
+  - **BRIGHT_YELLOW**
+  - **BRIGHT_BLUE**
+  - **BRIGHT_PURPLE**
+  - **BRIGHT_CYAN**
+  - **BRIGHT_WHITE**
+  - **RESET**
   
 ## `🧑‍💻` Contact
 - **Website**: https://aithe.dev/
