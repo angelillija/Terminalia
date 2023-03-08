@@ -1,6 +1,6 @@
 import os
-import sys
 import time
+import ctypes
 import locale
 import requests
 
@@ -8,10 +8,10 @@ from langdetect import detect
 from textblob import TextBlob
 from textblob.exceptions import NotTranslated
 
-""" Terminalia: A Python Library for Command Line Interface (CLI) Development """
 
-class Color: 
-    RESET = "\033[0m"
+class Color:
+    """Color class for ANSI color codes"""
+
     BLACK = "\033[30m"
     RED = "\033[31m"
     GREEN = "\033[32m"
@@ -21,7 +21,18 @@ class Color:
     CYAN = "\033[36m"
     WHITE = "\033[37m"
     GREY = "\033[90m"
-    
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+    BG_BLACK = "\033[40m"
+    BG_RED = "\033[41m"
+    BG_GREEN = "\033[42m"
+    BG_YELLOW = "\033[43m"
+    BG_BLUE = "\033[44m"
+    BG_MAGENTA = "\033[45m"
+    BG_CYAN = "\033[46m"
+    BG_WHITE = "\033[47m"
+
     BRIGHT_RED = "\033[91m"
     BRIGHT_GREEN = "\033[92m"
     BRIGHT_YELLOW = "\033[93m"
@@ -30,117 +41,92 @@ class Color:
     BRIGHT_CYAN = "\033[96m"
     BRIGHT_WHITE = "\033[97m"
 
+    RESET = "\033[0m"
+
 
 class Terminal:
     @staticmethod
-    def Title(self, title: str) -> None:
+    def set_title(title: str) -> None:
         """
-        Sets the title of the terminal window.
-        
+        Sets the console window title to the given title.
+
         Args:
-            title (str): The title to set for the terminal window.
-        Returns:
-            None
+        title (str): The title to set for the console window.
         """
-        print(f"\33]0;{title}\a", end="", flush=True)
+        if os.name == 'nt':
+            ctypes.windll.kernel32.SetConsoleTitleW(title)
+        else:
+            print(f"\033]0;{title}\a", end='', flush=True)
 
     @staticmethod
-    def Clear() -> None:
+    def clear() -> None:
         """
         Clears the terminal screen.
+        """
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+    @staticmethod
+    def hide_cursor() -> None:
+        """
+        Shows the cursor in the console.
+        """
+        if os.name == 'nt':
+            handle = ctypes.windll.kernel32.GetStdHandle(-11)
+            mode = ctypes.c_ulong()
+            ctypes.windll.kernel32.GetConsoleMode(handle, ctypes.byref(mode))
+            ctypes.windll.kernel32.SetConsoleMode(handle, mode.value & ~0x20)
+        else:
+            print("\033[?25l", end='', flush=True)
+
+    @staticmethod
+    def show_cursor() -> None:
+        """
+        Hides the cursor in the console.
+        """
+        if os.name == 'nt':
+            handle = ctypes.windll.kernel32.GetStdHandle(-11)
+            mode = ctypes.c_ulong()
+            ctypes.windll.kernel32.GetConsoleMode(handle, ctypes.byref(mode))
+
+            mode.value |= 1 | 2 | 4
+            ctypes.windll.kernel32.SetConsoleMode(handle, mode)
+        else:
+            print(f"\033[?25h", end="", flush=True)
+
+    @staticmethod
+    def translate(text: str) -> str:
+        """
+        Translates the given text from English to another language.
 
         Args:
-            None
+        text (str): The text to be translated.
+
         Returns:
-            None
-        """
-        os.system("cls||clear")
-
-    @staticmethod
-    def Hide_Cursor() -> None:
-        """
-        Hides the cursor on the terminal.
-
-        Arguments:
-            None
-        Returns:
-            None
-        """
-        sys.stdout.write("\033[?25l")
-        sys.stdout.flush()
-
-    @staticmethod
-    def Show_Cursor() -> None:
-        """
-        Displays the cursor on the terminal.
-
-        Arguments:
-            None
-        Returns:
-            None
-        """
-        sys.stdout.write("\033[?25h")
-        sys.stdout.flush()
-
-
-    @staticmethod
-    def Translate(text: str) -> str:
-        """
-        Translate text from one language to another. Auto detects the specified text's language as well as the users language.
-
-        Args:
-            text (str): The text to translate.
-        Returns:
-            str: The translated text.
+        str: The translated text.
         """
         try:
-            return TextBlob(text).translate(from_lang=detect(text), to=str(locale.getdefaultlocale()).split("_")[0].replace("('", ""))
+            return TextBlob(text).translate(from_lang=detect(text),
+                                            to=str(locale.getdefaultlocale())
+                                            .split("_")[0].replace("('", ""))
         except NotTranslated:
             return text
 
     @staticmethod
-    def Write(self, text: str, interval: float = 0.01, hide_cursor: bool = True) -> str:
+    def write(text: str, interval: float = 0.01, hide_cursor: bool = True) -> str:
         """
-        Writes the specified text to the console, one character at a time, with an optional delay between characters.
+        Simulates typing out the given text with a specified interval between characters.
 
         Args:
-            text (str): The text to write.
-            interval (float, optional): The delay between characters, in seconds. Default is 0.01 seconds.
-            hide_cursor (bool, optional): Whether to hide the cursor while writing the text. Default is True.
+        text (str): The text to be "typed" out.
+        interval (float, optional): The amount of time to wait between typing each character, in seconds. Defaults to 0.01.
+        hide_cursor (bool, optional): Whether to hide the cursor while typing. Defaults to True.
 
         Returns:
-            str: The full text that was written to the console.
+        str: The final typed out string.
         """
-        self.Hide_Cursor() if hide_cursor else None
+        Terminal.hide_cursor() if hide_cursor else None
 
         for letter in text:
             print(letter, end="", flush=True)
             time.sleep(interval)
         return ""
-
-    @staticmethod
-    def Color(text: str, color: Color, reset: bool = True) -> str: 
-        """
-        Colors text with the specified color.
-
-        Args:
-            text (str): The text to color.
-            color (Color): The color to use. 
-            reset (bool, optional): Whether to reset the color after the text is printed. Default is True.
-        Returns:
-            str: The colored text.
-        """
-
-        return f"{color}{text}{Color.RESET}" if reset else f"{color}{text}"
-
-    @staticmethod
-    def Center(text: str) -> str: 
-        """
-        Centers the specified text.
-
-        Args:
-            text (str): The text to center.
-        Returns:
-            str: The centered text.
-        """
-        return text.center(os.get_terminal_size().columns)
