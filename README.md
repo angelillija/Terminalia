@@ -136,6 +136,6 @@ print(f"{Color.BLUE}Hello, world!{Color.RESET}")
   - **BRIGHT_WHITE**
   - **RESET**
   
-## `🧑‍💻` Contact
-- **Telegram**: t.me/aithedev
-- **Discord**: ai#4444
+### `👨‍💻` Contact
+- **Telegram**: @angelillija
+- **Discord**: @angel.illija
